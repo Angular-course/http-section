@@ -7,6 +7,7 @@ import {ServersService} from './servers.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+    appName = this.serversService.getAppName();
     servers = [
         {
             name: 'Testserver',
@@ -34,6 +35,13 @@ export class AppComponent {
     onSave() {
         this.serversService.storeServers(this.servers).subscribe(
             (response) => console.log(response),
+            (error) => console.log(error)
+        );
+    }
+
+    onGet() {
+        this.serversService.getServers().subscribe(
+            (servers: any[]) => console.log(servers),
             (error) => console.log(error)
         );
     }
